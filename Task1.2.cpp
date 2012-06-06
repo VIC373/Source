@@ -15,19 +15,22 @@ void ChangeBits(ULI& num, const int& pos1, const int& pos2)
 	num = (num & ~(1 << pos2)) | (bit1 << pos2); //set bit1 to pos2
 }
 
+extern void DecToBin(int number);
+
 void main (void)
 {
 	cout << "Press number ";
 	ULI number;
 	cin >> number;
-	cout << "Press two positions separated by space ";
+	DecToBin(number);
+	cout << "\nPress two positions separated by space ";
 	int pos1, pos2;
 	cin >> pos1 >> pos2;
 
 	ChangeBits(number,pos1,pos2);
 
-	cout<< number << endl;
+	DecToBin(number);
+	cout<< endl << number << endl;
 
 	system ("@pause");
 }
-
