@@ -4,13 +4,13 @@ using std::cout;
 /*
 * Pow (5,2) = 2*2*2*2*2 = 32
 */
-int Pow (int exponent, int number = 2) 
+double Pow (int exponent, int number = 2) 
 {
-	if (exponent == 0) // (any number)^0 = 1
+	if (exponent == 0) /*(any number)^0 = 1*/
 	{
 		return 1; 
 	}
-	int result = number;
+	double result = number;
 	exponent--;
 	while (exponent != 0)
 	{
@@ -22,11 +22,11 @@ int Pow (int exponent, int number = 2)
 /*
 * Function convert a number from decimal to binary
 */
-void DecToBin(int number)
+void DecToBin(unsigned long int number)
 {
-	int p = 1; //exponent
+	int p = 1; /*exponent*/
 
-	while (Pow(p) <= number)   // Example for number "120" (128 > 120) "p" will be 7 
+	while (Pow(p) <= number)   /*Example for number "120" (128 > 120) "p" will be 7*/
 	{
 		p++;
 	}
@@ -34,6 +34,6 @@ void DecToBin(int number)
 	while (p != 0) 
 	{
 		p--;
-		cout << (number >> p & 0x1); //output by one character
+		cout << (number >> p & 0x1); /*output by one character*/
 	}
 }
