@@ -14,7 +14,7 @@ extern void DecToBin(unsigned long int number); /*Function from DecToBin.cpp*/
 */
 void ChangeNyble (ULI& number)
 {
-	number = ( (number& 0x0F0F0F0F) << 4) | ( (number& 0xF0F0F0F0) >> 4);
+	number = ( (number & 0x0F0F0F0F) << 4 ) | ( (number & 0xF0F0F0F0) >> 4 );
 }
 
 void main (void)

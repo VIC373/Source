@@ -12,7 +12,7 @@ extern void DecToBin(unsigned long int number); /*Function from DecToBin.cpp*/
 /*
 * This function return next even number
 */
-ULI NextEvenNumber (ULI& number)
+ULI NextEvenNumber (const ULI& number)
 {
 	return (number & ~(0x1) ) + 0x2;
 }
