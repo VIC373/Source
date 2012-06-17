@@ -110,8 +110,8 @@ void SelectionSorting(Book *& books, int size)
 			}
 		}
 				temp = books[j];/*save value of 1st element*/
-				books[j] = *pmax; /*into 1st - insert min value*/
-				*pmax = temp;  /*into min value - insert 1st value from temp*/
+				books[j] = *pmax; /*into 1st - insert max value*/
+				*pmax = temp;  /*into max value - insert 1st value from temp*/
 	}
 }
 
