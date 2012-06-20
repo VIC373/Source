@@ -29,8 +29,7 @@ void main(void)
 			{
 				text.push_back(buf[j]);
 			}
-			pos = i; /*new senteces*/
-			pos += 2;
+			pos = i + 2; /*new senteces*/
 			cout << ReverseWord(text);
 			cout << buf[i] << " "; /*signe*/
 			text.clear();
@@ -43,7 +42,7 @@ void main(void)
 
 string ReverseWord(string& text)
 {
-	string newText = text;
+	string newText = text; /*Length of newText should be the same, that is why we use '='*/
 	
 	for (int i = text.length(), j = 0; i > 0; --i, ++j) /*Reverse all*/
 	{
