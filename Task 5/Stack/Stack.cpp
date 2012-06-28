@@ -2,7 +2,27 @@
 
 UI Stack::size = 0;
 
-bool Stack::Push(stackData& data)
+Stack::Stack(void)
+{
+	head = NULL;
+}
+
+Stack::~Stack(void)
+{
+	Clear();
+}
+
+bool Stack::Empty(void) const
+{
+	return head == NULL;
+}
+
+int Stack::Size(void) const
+{
+	return size;
+}
+
+bool Stack::Push(const stackData& data)
 {
 	try
 	{
@@ -19,7 +39,7 @@ bool Stack::Push(stackData& data)
 	return true;
 }
 
-stackData Stack::Pop()
+stackData Stack::Pop(void)
 {
 	if ( ! Empty() )
 	{
@@ -36,7 +56,7 @@ stackData Stack::Pop()
 	}
 }
 
-stackData Stack::Top() const
+stackData Stack::Top(void) const
 {
 	if ( !Empty() )
 	{
@@ -59,7 +79,7 @@ ostream& operator << (ostream& s, const Stack& stack)
 	return s;
 }
 
-void Stack::Clear()
+void Stack::Clear(void)
 {
 	while ( head )
 	{
