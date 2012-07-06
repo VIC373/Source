@@ -60,7 +60,7 @@ private:
 	* @param [in] UC - midle point
 	* return bool - true (empty)
 	*/
-	inline bool EmptyLine(UC) const;
+	inline bool EmptyLine(US) const;
 public:
 	explicit Field(UC); /*UC - size of field = UC*UC*/
 	~Field();

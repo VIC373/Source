@@ -122,14 +122,14 @@ bool Field::InitShip(UC hor, UC vert, UC hor1, UC vert1)
 	}
 }
 
-inline bool Field::EmptyLine(UC f) const
+inline bool Field::EmptyLine(US f) const
 {
 	return  ( field[f].info == 0 ) && ( field[f+1].info == 0 ) && ( field[f-1].info == 0 ) ;
 }
 
 bool Field::IsEmpty(UC x, UC y) const
 {
-	int f = Coord(x,y);
+	US f = Coord(x,y);
 
 	if ( EmptyLine(f) && EmptyLine( f + size ) && EmptyLine ( f - size ) )
 	{
