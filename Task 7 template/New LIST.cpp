@@ -27,6 +27,7 @@ public:
 	bool PopFront();
 	T GetMaxEl() const;
 	bool AddAfter(T,UI);
+	void SortBubble();
 	void Show() const;
 };
 
@@ -138,7 +139,7 @@ inline const T& List<T>::Top() const
 	}
 	else
 	{
-		/*NULL*/
+		/*NULL*/;
 	}
 }
 
@@ -268,7 +269,7 @@ bool List<T>::AddAfter(T el, UI i)
 	{
 		return false;
 	}
-	else
+	else // i == 0
 	{	//after tmp we should insert new element
 		if (tmp == pLast)
 		{
@@ -282,6 +283,47 @@ bool List<T>::AddAfter(T el, UI i)
 			tmp->pNext = buf;
 		}
 		return true;
+	}
+}
+
+template<typename T>
+void List<T>::SortBubble() //TO DO...
+{
+	for ( Node* i = pFirst; i != pLast; i = i->pNext )
+	{
+		for ( Node *j = pFirst, *prev = pFirst; j != pLast; prev = j, j = j->pNext ) //save prev element
+		{
+					cout << "KROK" << endl;
+					Show();
+
+			if ( ( j->pNext != NULL ) && ( j->value < j->pNext->value) )
+			{
+				Node* a = j;
+				Node* b = j->pNext;
+				//Change values
+				if ( a == pFirst )
+				{
+					a->pNext = b->pNext;
+					b->pNext = a;
+					pFirst = b;
+				}
+				else if ( b == pLast )
+				{
+					a->pNext = NULL;
+					b->pNext = a;
+							//a - prev - next = b;
+							prev->pNext = b;
+					pLast = a;
+				}
+				else
+				{
+							//a - prev next = b;
+							prev->pNext = b;
+					a->pNext = b->pNext;
+					b->pNext = a;
+				}
+			}
+		}
 	}
 }
 
@@ -300,17 +342,13 @@ void main(void)
 {
 	List<int> data;
 	data.PushBack(1);			// 1
-
 	data.PopBack();				
 	data.PopBack();
 	data.PopFront();
-
 	data.PushBack(2);			// 2
 	data.PushBack(3);			// 2 3
-
 	data.PushFront(-1);			// -1 2 3
 	data.PushFront(-5);			// -5 -1 2 3
-
 	data.PushBack(100);			// -5 -1 2 3 100
 
 	data.Show();
@@ -324,18 +362,21 @@ void main(void)
 	int max = data.GetMaxEl();
 	cout << endl << "MAX element = " << max << endl;
 
-	data.AddAfter(555,2);		// -1 2 555 3
-	data.Show();
+	data.AddAfter(5,2);		
+	data.Show();				// -1 2 555 3
 
 	List<int> data2;
 	data2 = data;
 	cout << "Show data2 after operator = " << endl;
 	data2.Show();
 
-
-	List<int>* data3 = new List<int>(data2);
+	List<int> data3(data2);
 	cout << "Show data3 after copy constructor " << endl;
-	data3->Show();
+	data3.Show();
+	
+	//cout << "List after Sorting" << endl;
+	//data3.SortBubble();
+	//data3.Show();
 
 	system("@pause");
 }

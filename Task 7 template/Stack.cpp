@@ -10,16 +10,16 @@ class Stack
 private:
 	UI size;
 	T* data;
-	Stack& operator=(const Stack&);
-	Stack(const Stack&);
 public:
 	Stack();
+	Stack(const Stack&);
+	Stack& operator=(const Stack&);
 	~Stack();
 	bool PushBack(T);
 	bool PopBack();
-	T Top() const;
-	UI Size() const;
-	bool IsEmpty() const;
+	inline T Top() const;
+	inline UI Size() const;
+	inline bool IsEmpty() const;
 	void Clear();
 	void Show() const;
 };
@@ -32,9 +32,39 @@ Stack<T>::Stack()
 }
 
 template<typename T>
+Stack<T>::Stack(const Stack<T>& stack)
+{
+	size = stack.size;
+	if (size > 0)
+	{
+		data = (T*)malloc(sizeof(T)*size);
+		memcpy(data,stack.data,sizeof(T)*size);
+	}
+	else
+	{
+		data = (T*)malloc(sizeof(T));
+	}
+}
+
+template<typename T>
+Stack<T>& Stack<T>::operator=(const Stack<T>& stack)
+{
+	if ( this != &stack )
+	{
+		this->Clear();
+		if ( stack.size )
+		{
+			size = stack.size;
+			data = (T*)realloc(data,sizeof(T)*size);
+			memcpy(data,stack.data,sizeof(T)*size);
+		}
+	}
+	return *this;
+}
+
+template<typename T>
 Stack<T>::~Stack()
 {
-	size = 0;
 	free(data);
 }
 
@@ -68,19 +98,19 @@ bool Stack<T>::PopBack()
 }
 
 template<typename T>
-T Stack<T>::Top() const
+inline T Stack<T>::Top() const
 {
 	return (size > 0) ? data[size - 1] : -1;
 }
 
 template<typename T>
-UI Stack<T>::Size() const
+inline UI Stack<T>::Size() const
 {
 	return size;
 }
 
 template<typename T>
-bool Stack<T>::IsEmpty() const
+inline bool Stack<T>::IsEmpty() const
 {
 	return (size == 0) ? true : false;
 }
